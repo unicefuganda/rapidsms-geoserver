@@ -37,8 +37,15 @@ class Command(BaseCommand):
                     cat_num = 0
                     # import pdb;pdb.set_trace()
                     print values
+                    values.update({'total': total, 'total_yes': values['yes'], 'total_no': values['no'], 'total_unknown': values['unknown'], 'total_uncategorized': values['uncategorized']})
+                    category_names = category_names + ['total', 'total_yes', 'total_no', 'total_unknown', 'total_uncategorized']
                     for cat_name in category_names:
-                        values[cat_name] = float(values[cat_name]) / total
+                        if cat_name == 'total':
+                            values[cat_name] = total
+                        elif cat_name.startswith('total_'):
+                            values[cat_name] = values[cat_name]
+                        else:
+                            values[cat_name] = float(values[cat_name]) / total
                         if values[cat_name] > max_category:
                             top_category = cat_num
                             max_category = values[cat_name]

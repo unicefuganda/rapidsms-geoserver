@@ -1,5 +1,5 @@
 from django.db import models
-from poll.models import Poll
+
 
 class PollGeoData(models.Model):
     district = models.CharField(max_length=100, blank=True, null=True)
@@ -16,6 +16,12 @@ class PollData(PollGeoData):
     no = models.FloatField(blank=True, null=True, default=0)
     uncategorized = models.FloatField(blank=True, null=True, default=0)
     unknown = models.FloatField(max_length=5, blank=True, null=True, default=0)
+
+    total_yes = models.FloatField(blank=True, null=True, default=0)
+    total_no = models.FloatField(blank=True, null=True, default=0)
+    total_uncategorized = models.FloatField(blank=True, null=True, default=0)
+    total_unknown = models.FloatField(max_length=5, blank=True, null=True, default=0)
+    total = models.FloatField(max_length=5, blank=True, null=True, default=0)
 
 
 class PollCategoryData(PollGeoData):
@@ -48,6 +54,3 @@ class EmisAttendenceData(models.Model):
     female_teachers = models.IntegerField(default=0)
     male_teachers = models.IntegerField(default=0)
     total_teachers = models.IntegerField(default=0)
-
-
-
