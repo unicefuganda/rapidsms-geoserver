@@ -1,0 +1,11 @@
+POSTGIS_SQL_PATH=/usr/local/Cellar/postgis/2.0.3/share/postgis/
+ogr2ogr -f  "PGDump" -t_srs EPSG:900913 geoserver.sql Uganda_District2010/Uganda_districts2010.shp  -nlt multipolygon -nln Uganda_districts2010
+
+createdb geoserver -T template_postgis1
+cat geoserver.sql | psql geoserver postgres
+
+./manage.py sqlall south | psql geoserver postgres
+./manage.py migrate geoserver --database=geoserver
+
+./manage.py export_poll_data
+
