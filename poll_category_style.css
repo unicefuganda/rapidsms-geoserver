@@ -71,4 +71,16 @@ dname_2010{
     font-size: 14;
 }
 
+location_name_to_be_rendered{
+    stroke-width: 0.3;
+    stroke:#ccc;
+}
+
+/* @title Boundaries */
+[@scale < 20000000] {
+    label: [location_name_to_be_rendered];
+    font-family: "Arial";
+    font-style: normal;
+    font-size: 14;
+}
 
